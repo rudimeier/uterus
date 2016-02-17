@@ -19,12 +19,17 @@ matrix:
       env: CHECK="distcheck"
 
 install:
-  - if "$TRAVIS_OS_NAME" = "linux"; then
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then
       sudo apt-get -qq update && sudo apt-get install -qq
         texinfo
         texlive
         liblzma-dev
-        ;
+      ;
+    fi
+  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then
+      brew update >/dev/null; brew install
+        hdf5
+      ;
     fi
 
 before_script:
