@@ -37,7 +37,7 @@ before_script:
   - MAKE="make -j2"
 
 script:
-  - ./configure CPPFLAGS="-DDEBUG_FLAG" --with-matlab || { cat config.log; false; }
+  - ./configure || { cat config.log; false; }
   - if [ "$CHECK" = "normal" ]; then
       $MAKE clean && $MAKE check;
     fi
