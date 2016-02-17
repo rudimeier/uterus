@@ -39,7 +39,11 @@ before_script:
 script:
   - ./configure || { cat config.log; false; }
   - if [ "$CHECK" = "normal" ]; then
-      $MAKE clean && $MAKE check;
+      $MAKE &&
+      cd src &&
+      ./ute --help &&
+      ./ute-mux --help &&
+      ./ute mux --help;
     fi
   - if [ "$CHECK" = "distcheck" ]; then
       $MAKE all && $MAKE distcheck;
